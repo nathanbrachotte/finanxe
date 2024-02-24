@@ -3,7 +3,7 @@
   "ignoreCommand": "pnpm dlx turbo-ignore",
   "crons": [
     {
-      "path": "/api/cron/1d",
+      "path": "/api/cron/updateEtfsValues",
       "schedule": "0 0 * * *"
     }
   ]

@@ -1,37 +1,39 @@
 import { Generated, Kysely } from "kysely";
 import { PlanetScaleDialect } from "kysely-planetscale";
 
-interface CommentsTable {
+export type Comments = {
   id: Generated<number>;
   name: string;
   body: string;
   created_by: string;
-}
+};
 
-interface ViewsTable {
+export type Views = {
   slug: string;
   count: number;
-}
+};
 
-interface EtfTable {
+export type Etf = {
   etf_id: Generated<number>;
-  symbol: string;
+  isin: string;
+  url: string;
   name: string;
-}
+  currency: string;
+};
 
-interface PriceHistoryTable {
+export type PriceHistory = {
   price_id: Generated<number>;
   etf_id: number; // This should match the type of etf_id in the EtfTable, assuming it's not auto-generated change to number.
   date: Date;
   price: number;
-}
+};
 
-interface Database {
-  comments: CommentsTable;
-  views: ViewsTable;
-  etf: EtfTable;
-  price_history: PriceHistoryTable;
-}
+export type Database = {
+  comments: Comments;
+  views: Views;
+  etfs: Etf;
+  price_history: PriceHistory;
+};
 
 export const queryBuilder = new Kysely<Database>({
   dialect: new PlanetScaleDialect({
